@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}My Applications{% endblock %}
+{% block content %}
+
+<h2>My Applications</h2>
+
+{% for app in applications %}
+    <hr>
+    <!-- FIX: was app.job.job_title — now correctly app.drive.job_title -->
+    <p><strong>Job:</strong> {{ app.drive.job_title }}</p>
+    <p><strong>Company:</strong> {{ app.drive.company_user.name }}</p>
+    <p><strong>Status:</strong> {{ app.status }}</p>
+{% else %}
+    <p>No applications yet. <a href="/student/jobs">Browse drives</a></p>
+{% endfor %}
+
+{% endblock %}

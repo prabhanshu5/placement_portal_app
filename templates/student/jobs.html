@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Available Drives</h2>
+
+{% for drive in drives %}
+    <hr>
+    <h3>{{ drive.job_title }}</h3>
+    <p><strong>Company:</strong> {{ drive.company_user.name }}</p>
+    {% if drive.company_user.company_profile %}
+        {% if drive.company_user.company_profile.website %}
+            <p><strong>Website:</strong> <a href="{{ drive.company_user.company_profile.website }}" target="_blank">{{ drive.company_user.company_profile.website }}</a></p>
+        {% endif %}
+        {% if drive.company_user.company_profile.location %}
+            <p><strong>Company Location:</strong> {{ drive.company_user.company_profile.location }}</p>
+        {% endif %}
+    {% endif %}
+    <p><strong>Role Location:</strong> {{ drive.location }}</p>
+    <p>{{ drive.job_description }}</p>
+    <p>Eligibility: {{ drive.eligibility_criteria }}</p>
+    <p>Package: {{ drive.package }}</p>
+    <p>Deadline: {{ drive.deadline }}</p>
+
+    <a href="/student/apply/{{ drive.id }}">Apply</a>
+{% else %}
+    <p>No drives available.</p>
+{% endfor %}
+
+{% endblock %}

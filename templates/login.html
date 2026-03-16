@@ -1,0 +1,38 @@
+{%extends "base.html"%}
+{%block content%}
+<br>
+<form method="POST">
+    <div class="mb-3s">
+        <label class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" required>
+    </div>
+    <div>
+        <label>role    </label> 
+        
+        <label>admin</label>
+        <input type="radio" value="admin" name="role" >
+        <label>company</label>
+        <input type="radio" value="company" name="role">
+        <label>student</label>
+        <input type="radio" value="student" name="role">
+
+    </div>
+
+    <button type="submit" class="btn btn-success w-100">Submit</button>
+    <br>
+    Didn't have an account? <a href="/signup">Signup</a>
+    <br>
+    <br>
+    <h3>Back to </h3><a href="/">Home</a>
+</form>
+{%endblock%}
+
+
+
+
+
+

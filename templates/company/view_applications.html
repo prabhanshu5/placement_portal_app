@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}View Applications{% endblock %}
+{% block content %}
+
+<h2>Applications for this Drive</h2>
+
+{% for app in applications %}
+    <hr>
+    <p><strong>Student:</strong> {{ app.user.name }}</p>
+    <p><strong>Email:</strong> {{ app.user.email }}</p>
+
+    <!-- Show student profile details if available -->
+    {% if app.user.student_profile %}
+        <p><strong>CGPA:</strong> {{ app.user.student_profile.cgpa }}</p>
+        <p><strong>Department:</strong> {{ app.user.student_profile.department }}</p>
+        <p><strong>Skills:</strong> {{ app.user.student_profile.skills }}</p>
+        {% if app.user.student_profile.resume_link %}
+            <p><a href="{{ app.user.student_profile.resume_link }}" target="_blank">View Resume</a></p>
+        {% endif %}
+    {% endif %}
+
+    <p><strong>Status:</strong> {{ app.status }}</p>
+
+    {% if app.status == 'Applied' %}
+        <a href="/company/application/update/{{ app.id }}/approved">✅ Approve</a> |
+        <a href="/company/application/update/{{ app.id }}/rejected">❌ Reject</a>
+    {% else %}
+        <em>Decision made: {{ app.status }}</em>
+    {% endif %}
+{% else %}
+    <p>No applications yet.</p>
+{% endfor %}
+
+<br>
+<a href="/company/my_drives">← Back to My Drives</a>
+
+{% endblock %}

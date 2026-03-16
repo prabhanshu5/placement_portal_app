@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Manage Drives{% endblock %}
+{% block content %}
+
+<h2>All Placement Drives</h2>
+
+{% for drive in drives %}
+    <hr>
+    <h3>{{ drive.job_title }}</h3>
+    <p><strong>Posted by:</strong> {{ drive.company_user.name }}</p>
+    <p><strong>Status:</strong> {{ drive.status }}</p>
+    <p><strong>Deadline:</strong> {{ drive.deadline }}</p>
+    <p><strong>Location:</strong> {{ drive.location }}</p>
+    <p><strong>Package:</strong> {{ drive.package }}</p>
+
+    {% if drive.status == 'Pending' %}
+        <!-- FIX: approve route now exists -->
+        <a href="/admin/approve_drive/{{ drive.id }}">✅ Approve</a>
+    {% else %}
+        <em>Already Approved</em>
+    {% endif %}
+{% else %}
+    <p>No drives found.</p>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}My Profile{% endblock %}
+{% block content %}
+
+<h2>Edit Profile</h2>
+
+<form method="POST">
+    <label>Department:</label>
+    <!-- FIX: value="{{ profile.department or '' }}" pre-fills the form -->
+    <input type="text" name="department" value="{{ profile.department if profile else '' }}"><br><br>
+
+    <label>CGPA:</label>
+    <input type="text" name="cgpa" value="{{ profile.cgpa if profile else '' }}"><br><br>
+
+    <label>Skills:</label>
+    <input type="text" name="skills" value="{{ profile.skills if profile else '' }}"><br><br>
+
+    <label>Resume Link (URL):</label>
+    <!-- FIX: changed to text input — file input doesn't work for saving a link -->
+    <input type="text" name="resume_link" value="{{ profile.resume_link if profile else '' }}" placeholder="https://..."><br><br>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" value="{{ profile.phone if profile else '' }}"><br><br>
+
+    <button type="submit">Save</button>
+</form>
+
+{% endblock %}

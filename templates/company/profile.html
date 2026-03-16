@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Company Profile{% endblock %}
+{% block content %}
+
+<h2>Company Profile</h2>
+
+<form method="POST">
+
+    <label>Company Description:</label><br>
+    <textarea name="description">{{ profile.description if profile else '' }}</textarea><br><br>
+
+    <label>Website:</label><br>
+    <input type="text" name="website" value="{{ profile.website if profile else '' }}" placeholder="https://yourcompany.com"><br><br>
+
+    <label>Location:</label><br>
+    <input type="text" name="location" value="{{ profile.location if profile else '' }}"><br><br>
+
+    <label>Phone:</label><br>
+    <input type="text" name="phone" value="{{ profile.phone if profile else '' }}"><br><br>
+
+    <button type="submit">Save</button>
+</form>
+
+<br>
+<a href="/company/dashboard">← Back to Dashboard</a>
+
+{% endblock %}

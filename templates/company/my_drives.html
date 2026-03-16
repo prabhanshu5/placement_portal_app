@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}My Drives{% endblock %}
+{% block content %}
+
+<h2>My Drives</h2>
+<a href="/company/drive/create">+ Create New Drive</a>
+<hr>
+
+{% for drive in drives %}
+    <h3>{{ drive.job_title }}</h3>
+    <p><strong>Status:</strong> {{ drive.status }}</p>
+    <p><strong>Deadline:</strong> {{ drive.deadline }}</p>
+    <p><strong>Location:</strong> {{ drive.location }}</p>
+    <p><strong>Package:</strong> {{ drive.package }}</p>
+
+    <!-- FIX: edit link now includes drive.id -->
+    <a href="/company/drive/edit/{{ drive.id }}">Edit</a> |
+
+    <form action="/company/drive/delete/{{ drive.id }}" method="POST" style="display:inline;">
+        <button type="submit" onclick="return confirm('Delete this drive?')">Delete</button>
+    </form> |
+
+    <a href="/company/view_applications/{{ drive.id }}">View Applications</a>
+    <hr>
+{% else %}
+    <p>No drives created yet.</p>
+{% endfor %}
+
+{% endblock %}

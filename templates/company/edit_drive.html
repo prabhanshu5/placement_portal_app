@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Edit Drive{% endblock %}
+{% block content %}
+
+<h2>Edit Placement Drive</h2>
+
+<!-- FIX: action now includes drive.id so the right drive gets updated -->
+<form action="/company/drive/edit/{{ drive.id }}" method="POST">
+
+    <label>Job Title *</label><br>
+    <!-- FIX: value pre-filled from existing drive data -->
+    <input type="text" name="job_title" value="{{ drive.job_title }}" required><br><br>
+
+    <label>Job Description *</label><br>
+    <textarea name="job_description" required>{{ drive.job_description }}</textarea><br><br>
+
+    <label>Eligibility Criteria *</label><br>
+    <input type="text" name="eligibility_criteria" value="{{ drive.eligibility_criteria }}" required><br><br>
+
+    <label>Application Deadline *</label><br>
+    <input type="date" name="deadline" value="{{ drive.deadline }}" required><br><br>
+
+    <label>Location</label><br>
+    <input type="text" name="location" value="{{ drive.location }}"><br><br>
+
+    <label>Package (LPA)</label><br>
+    <input type="text" name="package" value="{{ drive.package }}"><br><br>
+
+    <button type="submit">Save Changes</button>
+    <a href="/company/my_drives">Cancel</a>
+</form>
+
+{% endblock %}

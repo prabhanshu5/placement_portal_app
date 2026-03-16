@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Manage Users{% endblock %}
+{% block content %}
+
+<h2>All Users</h2>
+
+{% for user in users %}
+    <hr>
+    <p><strong>Name:</strong> {{ user.name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Role:</strong> {{ user.role }}</p>
+
+    <!-- FIX: added delete user functionality -->
+    <form action="/admin/delete_user/{{ user.id }}" method="POST" style="display:inline;">
+        <button type="submit" onclick="return confirm('Delete user {{ user.name }}?')">🗑 Delete</button>
+    </form>
+{% else %}
+    <p>No users found.</p>
+{% endfor %}
+
+{% endblock %}
